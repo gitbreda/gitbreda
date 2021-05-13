@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: canais
+  namespace: argocd
+
+spec:
+  # Project description
+  description: teste
+
+  # Allow manifests to deploy from any Git repos
+  sourceRepos:
+    - 'git@gitlab.grupocgd.com:supermegadevops/echo.git'
+
+  # Only permit applications to deploy to the guestbook namespace in the same cluster
+  destinations:
+    - namespace: canais-dev
+      server: https://kubernetes.default.svc
+    - namespace: canais-cq
+      server: https://kubernetes.default.svc
